@@ -12,8 +12,9 @@ namespace Zadania
                 Console.WriteLine("\n MENU ");
                 Console.WriteLine("1. Prosty kalkulator");
                 Console.WriteLine("2. Konwerter temperatur");
+                Console.WriteLine("3. Średnia ocen ucznia");
                 Console.WriteLine("0. Wyjście");
-                Console.Write("Wybierz zadanie (0-2): ");
+                Console.Write("Wybierz zadanie (0-3): ");
 
                 string wybor = Console.ReadLine();
 
@@ -24,6 +25,9 @@ namespace Zadania
                         break;
                     case "2":
                         Zadanie2_Temperatura();
+                        break;
+                    case "3":
+                        Zadanie3_Oceny();
                         break;
                     case "0":
                         running = false;
@@ -116,5 +120,45 @@ namespace Zadania
                 Console.WriteLine("Błąd: Podano nieprawidłową wartość.");
             }
         }
+         static void Zadanie3_Oceny()
+        {
+            Console.WriteLine("\n--- Zadanie 3: Średnia ocen ucznia ---");
+            try
+            {
+                Console.Write("Ile ocen chcesz wprowadzić? ");
+                int iloscOcen = int.Parse(Console.ReadLine());
+                double suma = 0;
+
+                for (int i = 0; i < iloscOcen; i++)
+                {
+                    Console.Write($"Podaj ocenę nr {i + 1} (skala 1-6): ");
+                    double ocena = double.Parse(Console.ReadLine());
+                    suma += ocena;
+                }
+
+                if (iloscOcen > 0)
+                {
+                    double srednia = suma / iloscOcen;
+                    Console.WriteLine($"Średnia: {srednia:F2}"); // F2 formatuje do 2 miejsc po przecinku
+
+                    if (srednia >= 3.0)
+                    {
+                        Console.WriteLine("Uczeń zdał.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Uczeń nie zdał.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nie wprowadzono żadnych ocen.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Błąd: Wprowadzono niepoprawne dane.");
+            }
+            }
     }
 }
