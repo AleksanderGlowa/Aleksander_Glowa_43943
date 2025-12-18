@@ -26,17 +26,40 @@ def zadanie_1_kalkulator():
         print(f"Wynik: {wynik}")
     except ValueError:
         print("Błąd: Podano nieprawidłową liczbę.")
+
+def zadanie_2_temperatura():
+    print("\n--- Zadanie 2: Konwerter Temperatur ---")
+    try:
+        kierunek = input("Wybierz konwersję (C - Celsjusz na Fahrenheit, F - Fahrenheit na Celsjusz): ").upper()
+        
+        if kierunek == 'C':
+            c = float(input("Podaj temperaturę w Celsjuszach: "))
+            f = c * 1.8 + 32
+            print(f"{c}°C = {f:.2f}°F")
+        elif kierunek == 'F':
+            f = float(input("Podaj temperaturę w Fahrenheitach: "))
+            c = (f - 32) / 1.8
+            print(f"{f}°F = {c:.2f}°C")
+        else:
+            print("Nieznany wybór konwersji.")
+    except ValueError:
+        print("Błąd: Podano nieprawidłową wartość temperatury.")
+
+
 # --- MENU GŁÓWNE ---
 def main():
     while True:
-        print("\n MENU ")
+        print("\n================ MENU ================")
         print("1. Prosty kalkulator")
+        print("2. Konwerter temperatur")
         print("0. Wyjście")
         
-        wybor = input("Wybierz zadanie (0-1): ")
+        wybor = input("Wybierz zadanie (0-2): ")
 
         if wybor == '1':
             zadanie_1_kalkulator()
+        elif wybor == '2':
+            zadanie_2_temperatura()
         elif wybor == '0':
             print("Zamykanie programu...")
             break
