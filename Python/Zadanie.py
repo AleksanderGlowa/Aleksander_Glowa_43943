@@ -45,6 +45,28 @@ def zadanie_2_temperatura():
     except ValueError:
         print("Błąd: Podano nieprawidłową wartość temperatury.")
 
+def zadanie_3_oceny():
+    print("\n--- Zadanie 3: Średnia ocen ucznia ---")
+    try:
+        ilosc_ocen = int(input("Ile ocen chcesz wprowadzić? "))
+        suma = 0
+
+        for i in range(ilosc_ocen):
+            ocena = float(input(f"Podaj ocenę nr {i+1} (skala 1-6): "))
+            suma += ocena
+
+        if ilosc_ocen > 0:
+            srednia = suma / ilosc_ocen
+            print(f"Średnia: {srednia:.2f}")
+            
+            if srednia >= 3.0:
+                print("Uczeń zdał.")
+            else:
+                print("Uczeń nie zdał.")
+        else:
+            print("Nie wprowadzono żadnych ocen.")
+    except ValueError:
+        print("Błąd: Wprowadzono niepoprawne dane.")
 
 # --- MENU GŁÓWNE ---
 def main():
@@ -52,14 +74,17 @@ def main():
         print("\n================ MENU ================")
         print("1. Prosty kalkulator")
         print("2. Konwerter temperatur")
+        print("3. Średnia ocen ucznia")
         print("0. Wyjście")
         
-        wybor = input("Wybierz zadanie (0-2): ")
+        wybor = input("Wybierz zadanie (0-3): ")
 
         if wybor == '1':
             zadanie_1_kalkulator()
         elif wybor == '2':
             zadanie_2_temperatura()
+        elif wybor == '3':
+            zadanie_3_oceny()
         elif wybor == '0':
             print("Zamykanie programu...")
             break
