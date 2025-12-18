@@ -11,8 +11,9 @@ namespace Zadania
             {
                 Console.WriteLine("\n MENU ");
                 Console.WriteLine("1. Prosty kalkulator");
+                Console.WriteLine("2. Konwerter temperatur");
                 Console.WriteLine("0. Wyjście");
-                Console.Write("Wybierz zadanie (0-1): ");
+                Console.Write("Wybierz zadanie (0-2): ");
 
                 string wybor = Console.ReadLine();
 
@@ -20,6 +21,9 @@ namespace Zadania
                 {
                     case "1":
                         Zadanie1_Kalkulator();
+                        break;
+                    case "2":
+                        Zadanie2_Temperatura();
                         break;
                     case "0":
                         running = false;
@@ -78,6 +82,38 @@ namespace Zadania
             catch (FormatException)
             {
                 Console.WriteLine("Błąd: Podano nieprawidłową liczbę.");
+            }
+        }
+        static void Zadanie2_Temperatura()
+        {
+            Console.WriteLine("\n--- Zadanie 2: Konwerter Temperatur ---");
+            Console.Write("Wybierz konwersję (C - Celsjusz na Fahrenheit, F - Fahrenheit na Celsjusz): ");
+            string kierunek = Console.ReadLine().ToUpper();
+
+            try
+            {
+                if (kierunek == "C")
+                {
+                    Console.Write("Podaj temperaturę w Celsjuszach: ");
+                    double c = double.Parse(Console.ReadLine());
+                    double f = c * 1.8 + 32;
+                    Console.WriteLine($"{c}°C = {f:F2}°F");
+                }
+                else if (kierunek == "F")
+                {
+                    Console.Write("Podaj temperaturę w Fahrenheitach: ");
+                    double f = double.Parse(Console.ReadLine());
+                    double c = (f - 32) / 1.8;
+                    Console.WriteLine($"{f}°F = {c:F2}°C");
+                }
+                else
+                {
+                    Console.WriteLine("Nieznany wybór konwersji.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Błąd: Podano nieprawidłową wartość.");
             }
         }
     }
